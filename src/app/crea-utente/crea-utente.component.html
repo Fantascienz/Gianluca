@@ -1,0 +1,88 @@
+<h1>{{titolo}} Utente</h1>
+
+
+
+<div [hidden]="submitted" style="width: 300px;">
+    <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" formControlName="name" name="name"
+                [readonly]="path == 'info/:id'">
+            <div class="validazione"
+                *ngIf="reactiveForm.controls['name'].invalid && reactiveForm.controls['name'].touched">
+                <i class="bi bi-exclamation-octagon-fill"> Please choose a name</i>
+            </div>
+            <div *ngIf="reactiveForm.controls['name'].valid && path != 'info/:id'">
+                <i class="bi bi-check-circle-fill"> Valid name!</i>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="surname">Cognome</label>
+            <input type="text" class="form-control" id="surname" formControlName="surname" name="surname"
+                [readonly]="path == 'info/:id'">
+            <div class="validazione"
+                *ngIf="reactiveForm.controls['surname'].invalid && reactiveForm.controls['surname'].touched">
+                <i class="bi bi-exclamation-octagon-fill"> Please choose a surname</i>
+            </div>
+            <div *ngIf="reactiveForm.controls['surname'].valid && path != 'info/:id'">
+                <i class="bi bi-check-circle-fill"> Valid surname!</i>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username" name="username"
+                [readonly]="path == 'info/:id'">
+            <div class="validazione"
+                *ngIf="reactiveForm.controls['username'].invalid && reactiveForm.controls['username'].touched">
+                <i class="bi bi-exclamation-octagon-fill"> Please choose an username</i>
+            </div>
+            <div *ngIf="reactiveForm.controls['username'].valid && path != 'info/:id'">
+                <i class="bi bi-check-circle-fill"> Valid username!</i>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" formControlName="email" name="email"
+                [readonly]="path == 'info/:id'">
+            <div class="validazione"
+                *ngIf="reactiveForm.controls['email'].invalid && reactiveForm.controls['email'].touched">
+                <span *ngIf="reactiveForm.get('email').errors['required']">
+                    <i class="bi bi-exclamation-octagon-fill"> Please choose an e-mail</i>
+                </span>
+                <span *ngIf="reactiveForm.get('email').errors['email']">
+                    <i class="bi bi-exclamation-octagon-fill"> Please set a correct e-mail</i>
+                </span>
+            </div>
+            <div *ngIf="reactiveForm.controls['email'].valid && path != 'info/:id'">
+                <i class="bi bi-check-circle-fill"> Valid e-mail!</i>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="tornaSuLista()"
+            style="margin-right: 5px;">Indietro</button>
+        <button *ngIf="path != 'info/:id'" type="submit" class="btn btn-success"
+            [disabled]="reactiveForm.invalid" 
+            [title]="reactiveForm.invalid? 'Invalid' : titolo"
+            [style]="reactiveForm.invalid?'background-color:red; opacity:0.5':'background-color:green'"> 
+            <i *ngIf="reactiveForm.valid; else invalid" class="bi bi-check-circle"> <span> {{titolo}}</span></i>
+            <ng-template #invalid>
+                <i class="bi bi-exclamation-triangle"> <span> Compila i campi</span> </i>
+            </ng-template>
+            </button>
+
+    </form>
+</div>
+
+<div>
+    <select class="form-control" (input)="evento()">
+        <option selected="selected">orange</option>
+        <option>white</option>
+        <option selected="selected">purple</option>
+      </select>
+</div>

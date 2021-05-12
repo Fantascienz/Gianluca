@@ -1,0 +1,21 @@
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+}
+
+input:focus{
+	background-color:rgba(255, 255, 255, 0.699);
+	border-bottom: 2px solid gray;
+    border-left: 2px solid gray;
+	outline:0px;
+}
+
+tbody>tr:hover{
+    border: 3px solid rgba(63, 60, 60, 0.356);
+}
+
+a{
+    cursor: pointer;
+}

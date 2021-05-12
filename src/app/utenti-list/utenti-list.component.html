@@ -1,0 +1,83 @@
+<h1>Lista Utenti</h1>
+
+Totale utenti: {{count}}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form class="row">
+
+            <div class="form-group col-sm-8" align="right">
+                <input type="text" class="form-control" id="ricerca" required [(ngModel)]="nameToSearch" name="name"
+                    placeholder="Cerca per nome">
+            </div>
+
+            <div class="btn-group col-sm-4" align="left">
+                <button type="submit" class="btn btn-success" (click)="recuperaUtenti(null)">Cerca</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+            (pageChange)="handlePageChange($event)">
+        </pagination-controls>
+    </div>
+
+    <div class="col-md-4">
+        Utenti per Pagina:
+        <select (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{size}}
+            </option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a (click)="recuperaUtenti('name')">Nome</a></th>
+                <th><a (click)="recuperaUtenti('surname')">Cognome</a></th>
+                <th><a (click)="recuperaUtenti('username')">Username</a></th>
+                <th><a (click)="recuperaUtenti('email')">E-mail</a></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="
+                    let utente of utenti | paginate : {
+                        itemsPerPage: pageSize,
+                        currentPage: page,
+                        totalItems: count
+                        };
+                    let i = index
+                ">
+
+                <td>
+                    {{utente.name}}
+                </td>
+                <td>
+                    {{utente.surname}}
+                </td>
+                <td>
+                    {{utente.username}}
+                </td>
+                <td>
+                    {{utente.email}}
+                </td>
+                <td>
+                    <form (ngSubmit)="modificaUtente(utente)" *ngIf="utente">
+                        <a [routerLink]="['/info', utente.id]" class="col-sm-4 btn btn-sm btn-primary" role="button"
+                            routerLinkActive="active" style="width: 33%; margin-right: 0.5%;">Info</a>
+                        <a [routerLink]="['/modifica', utente.id]" class="col-sm-4 btn btn-sm btn-success" role="button"
+                            routerLinkActive="active" style="width: 33%; margin-right: 0.5%;">Modifica</a>
+                        <button class="col-sm-4 btn btn-sm btn-danger" (click)='eliminaUtente(utente)'
+                            style="width: 33%;">Elimina</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

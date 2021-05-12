@@ -1,0 +1,52 @@
+<!-- <div *ngIf="utente">
+    <div>
+        <label>Nome: </label> {{utente.name}}
+    </div>
+
+    <div>
+        <label>Cognome: </label> {{utente.surname}}
+    </div>
+
+    <div>
+        <label>Username: </label> {{utente.username}}
+    </div>
+
+    <div>
+        <label>E-mail: </label> {{utente.email}}
+    </div>
+
+    <button class="button is-small btn-danger" (click)='eliminaUtente()'>Elimina Utente</button>
+    
+    <hr/>
+</div> -->
+
+<div *ngIf="utente">
+
+    <form (ngSubmit)="modificaUtente()">
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="utente.name" name="name" placeholder={{utente.name}}>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Cognome</label>
+            <input type="text" class="form-control" id="surname" required [(ngModel)]="utente.surname" name="surname" placeholder={{utente.surname}}>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" required [(ngModel)]="utente.username" name="username" placeholder={{utente.username}}>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="utente.email" name="email" placeholder={{utente.email}}>
+        </div>
+
+    </form>
+
+    <button type="submit" class="button is-small btn-success"></button> 
+    <button class="button is-small btn-danger" (click)='eliminaUtente()'>Elimina Utente</button>
+    
+    <hr/>
+</div>

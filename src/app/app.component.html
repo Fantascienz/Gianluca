@@ -1,0 +1,15 @@
+<div class="container" style="padding: 20px;">
+  <div style="color: cornsilk; background-color: darkcyan; padding: 20px;">
+    <h1>{{titolo}}</h1>
+
+    <nav>
+      <a routerLink="utente" class="btn btn-primary active" role="button" routerLinkActive="active">Lista Utenti</a>
+      <a routerLink="crea" class="btn btn-primary active" role="button" routerLinkActive="active">Crea Utente</a>
+    </nav>
+  </div>
+
+  <div style="padding-left: 20px;">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
